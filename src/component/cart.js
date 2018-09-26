@@ -92,7 +92,11 @@ const Cart = connect(() => ({}), {clear})(({total, items, clear}) => {
               <tbody>
                 {map((item) => <Item {...item}/>, items)}
                 <tr>
-                  <td colSpan={4}><p className={classNames(styles.total)}>TOTAL:&nbsp;${Math.round((total) * 100) / 100}</p></td>
+                  <td colSpan={4}>
+                    <p className={classNames(styles.total)}>
+                      TOTAL:&nbsp;${Math.round((total) * 100) / 100}
+                    </p>
+                  </td>
                   </tr>
               </tbody>
             </table>
