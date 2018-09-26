@@ -18,6 +18,9 @@ const Product = ({add, setQuantity, id, title, image, items}) => {
       <div className={classNames(styles.productTitle)}>
         {title}
       </div>
+      <div className={classNames(styles.productAdd)}>
+        Add to cart
+      </div>
     </div>
   );
 };
