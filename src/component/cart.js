@@ -2,6 +2,7 @@ import {createElement} from 'react';
 import map from 'lodash/fp/map';
 import reduce from 'lodash/fp/reduce';
 import {connect} from 'react-redux';
+import className from 'classnames';
 
 import {clear, setQuantity, deleteItem} from '../action/cart';
 import * as products from '../data/items';
@@ -29,13 +30,28 @@ const Item = connect(
   return (
     <tr key={id}>
       <td>
-        {title} <FontAwesomeIcon icon={faTrashAlt} onClick={() => deleteItem({id})} />
+        {title}
+        <FontAwesomeIcon
+          icon={faTrashAlt}
+          onClick={() => deleteItem({id})}
+          className={className(styles.margin, styles.clickableIcon, styles.iconNegative)}
+        />
       </td>
       <td>
         ${price}
       </td>
       <td>
-        <FontAwesomeIcon icon={faMinus} onClick={dec} /> {quantity} <FontAwesomeIcon icon={faPlus} onClick={inc} />
+        <FontAwesomeIcon
+          icon={faMinus}
+          onClick={dec}
+          className={className(styles.margin, styles.clickableIcon, styles.iconNegative)}
+        />
+        {quantity}
+        <FontAwesomeIcon
+          icon={faPlus}
+          onClick={inc}
+          className={className(styles.margin, styles.clickableIcon, styles.iconPositive)}
+        />
       </td>
       <td>
         ${Math.round((price * quantity) * 100) / 100}
