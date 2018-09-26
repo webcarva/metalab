@@ -76,8 +76,12 @@
   body {
     line-height: 1.5;
     color: #333;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
   }
   a {
     text-decoration: none;
+  }
+  p, th {
+    font-weight: 500;
   }
 }
