@@ -1,3 +1,14 @@
+.mobile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  margin: 8px -4px;
+}
+
+.desktop {
+  display: none;
+}
+
 .section {
   margin: 8px;
 }
@@ -91,7 +102,48 @@
   text-align: right;
 }
 
+.mobile div {
+  width: 100%;
+}
+
+.mobile div .total {
+  text-align: center;
+}
+
+.mobileRow {
+  flex: 1 1 45%;
+  min-width: 155px;
+  max-width: 280px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 8px;
+  border: 1px solid #e9e9e9;
+  background-color: #f9f9f9;
+  margin-top: 8px;
+}
+
+.mobileRow > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobileRow span:first-of-type {
+  font-weight: 500;
+}
+.mobileRow span:last-of-type {
+  text-align: right;
+}
+
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+@media screen and (min-width: 600px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
 }
