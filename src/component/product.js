@@ -2,6 +2,7 @@ import {createElement} from 'react';
 import {add, setQuantity} from '../action/cart';
 import {connect} from 'react-redux';
 import styles from './styles.css';
+import classNames from 'classnames';
 
 const Product = ({add, setQuantity, id, title, image, items}) => {
   const cartProduct = items.find((o) => o.id === id);
@@ -9,9 +10,14 @@ const Product = ({add, setQuantity, id, title, image, items}) => {
   let func = () => add(id);
   if (quantity > 1) func = () => setQuantity({id, quantity});
   return (
-    <div className={styles.product} onClick={func}>
-      <img src={image} alt={title} className={styles.productImage}/>
-      {title}
+    <div className={classNames(styles.product)} onClick={func}>
+      <div
+        className={classNames(styles.productImageContainer)}
+        alt={title} style={{backgroundImage: `url(${image})`}}
+      />
+      <div className={classNames(styles.productTitle)}>
+        {title}
+      </div>
     </div>
   );
 };

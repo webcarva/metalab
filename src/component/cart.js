@@ -2,7 +2,7 @@ import {createElement} from 'react';
 import map from 'lodash/fp/map';
 import reduce from 'lodash/fp/reduce';
 import {connect} from 'react-redux';
-import className from 'classnames';
+import classNames from 'classnames';
 
 import {clear, setQuantity, deleteItem} from '../action/cart';
 import * as products from '../data/items';
@@ -34,7 +34,11 @@ const Item = connect(
         <FontAwesomeIcon
           icon={faTrashAlt}
           onClick={() => deleteItem({id})}
-          className={className(styles.margin, styles.clickableIcon, styles.iconNegative)}
+          className={classNames(
+            styles.margin,
+            styles.clickableIcon,
+            styles.iconNegative
+          )}
         />
       </td>
       <td>
@@ -44,13 +48,21 @@ const Item = connect(
         <FontAwesomeIcon
           icon={faMinus}
           onClick={dec}
-          className={className(styles.margin, styles.clickableIcon, styles.iconNegative)}
+          className={classNames(
+            styles.margin,
+            styles.clickableIcon,
+            styles.iconNegative
+          )}
         />
         {quantity}
         <FontAwesomeIcon
           icon={faPlus}
           onClick={inc}
-          className={className(styles.margin, styles.clickableIcon, styles.iconPositive)}
+          className={classNames(
+            styles.margin,
+            styles.clickableIcon,
+            styles.iconPositive
+          )}
         />
       </td>
       <td>
@@ -64,30 +76,31 @@ const Cart = connect(() => ({}), {clear})(({total, items, clear}) => {
   return (
     <div>
       <Heading><FontAwesomeIcon icon={faShoppingCart} /> Cart</Heading>
-      {items.length ? (
-        <div>
-          <button onClick={clear}>Clear all items</button>
-          <table>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {map((item) => <Item {...item}/>, items)}
-              <tr>
-                <td colSpan={3}/>
-                  <h2>${Math.round((total) * 100) / 100}</h2>
+      <div className={classNames(styles.section)}>
+        {items.length ? (
+          <div>
+            <button onClick={clear}>Clear all items</button>
+            <table>
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
                 </tr>
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {map((item) => <Item {...item}/>, items)}
+                <tr>
+                  <td colSpan={4}><p className={classNames(styles.total)}>TOTAL:&nbsp;${Math.round((total) * 100) / 100}</p></td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
       ) : (
         <p>Your cart is empty</p>
       )}
+    </div>
     </div>
   );
 });
